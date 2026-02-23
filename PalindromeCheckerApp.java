@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
 
     private static final String APP_NAME = "Palindrome Checker Management System";
@@ -11,6 +13,8 @@ public class PalindromeCheckerApp {
         checkPalindromeUsingReverse();
 
         checkPalindromeUsingCharArray();
+
+        checkPalindromeUsingStack();
 
         System.out.println("System initialized successfully.");
     }
@@ -77,6 +81,32 @@ public class PalindromeCheckerApp {
             }
             start++;
             end--;
+        }
+
+        return isPalindrome;
+    }
+
+    private static void checkPalindromeUsingStack() {
+        String input = "noon";
+        boolean result = isPalindromeUsingStack(input);
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    private static boolean isPalindromeUsingStack(String input) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        boolean isPalindrome = true;
+
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
         }
 
         return isPalindrome;
