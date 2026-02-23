@@ -10,6 +10,8 @@ public class PalindromeCheckerApp {
 
         checkPalindromeUsingReverse();
 
+        checkPalindromeUsingCharArray();
+
         System.out.println("System initialized successfully.");
     }
 
@@ -50,9 +52,33 @@ public class PalindromeCheckerApp {
         return reversed;
     }
 
-
     private static boolean isPalindromeByReverse(String input) {
         String reversed = reverseString(input);
         return input.equals(reversed);
+    }
+
+    private static void checkPalindromeUsingCharArray() {
+        String input = "radar";
+        boolean result = isPalindromeUsingCharArray(input);
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    private static boolean isPalindromeUsingCharArray(String input) {
+        char[] chars = input.toCharArray();
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        return isPalindrome;
     }
 }
