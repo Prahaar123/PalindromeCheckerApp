@@ -1,25 +1,34 @@
 public class PalindromeCheckerApp {
-    public static void main(String[] args) {
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 1.0");
-        System.out.println();
-        System.out.println("System initialized successfully.");
-        String input = "madam";  
-        boolean isPalindrome = true;
 
+    private static final String APP_NAME = "Palindrome Checker Management System";
+    private static final String APP_VERSION = "1.0";
+
+    public static void main(String[] args) {
+        displayWelcomeMessage();
+
+        checkHardcodedPalindrome();
+
+        System.out.println("System initialized successfully.");
+    }
+
+    private static void displayWelcomeMessage() {
+        System.out.println("Welcome to the " + APP_NAME);
+        System.out.println("Version : " + APP_VERSION);
+    }
+
+    private static void checkHardcodedPalindrome() {
+        String input = "madam";
+        boolean result = isPalindrome(input);
+        System.out.println("Input text: " + input);
+        System.out.println("Is it a palindrome? : " + result);
+    }
+
+    private static boolean isPalindrome(String input) {
         for (int i = 0; i < input.length() / 2; i++) {
             if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
+                return false;
             }
         }
-
-        if (isPalindrome) {
-            System.out.println("The string \"" + input + "\" is a Palindrome.");
-        } else {
-            System.out.println("The string \"" + input + "\" is NOT a Palindrome.");
-        }
-
-        System.out.println("Program execution completed.");
+        return true;
     }
 }
