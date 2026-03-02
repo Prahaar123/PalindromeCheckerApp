@@ -29,6 +29,8 @@ public class PalindromeCheckerApp {
 
         checkPalindromeUsingRecursion();
 
+        checkPalindromeWithNormalization();
+
         System.out.println("System initialized successfully.");
     }
 
@@ -230,5 +232,25 @@ public class PalindromeCheckerApp {
         }
 
         return isPalindromeRecursive(input, start + 1, end - 1);
+    }
+
+    private static void checkPalindromeWithNormalization() {
+        String input = "A man a plan a canal Panama";
+        boolean result = isPalindromeWithNormalization(input);
+        System.out.println("Input: " + input);
+        System.out.println("Is palindrome? : " + result);
+    }
+
+    private static boolean isPalindromeWithNormalization(String input) {
+
+        String normalized = input.replaceAll("\\s+", "").toLowerCase();
+
+        for (int i = 0; i < normalized.length() / 2; i++) {
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
