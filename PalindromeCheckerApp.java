@@ -1,3 +1,5 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -19,6 +21,8 @@ public class PalindromeCheckerApp {
         checkPalindromeUsingStack();
 
         checkPalindromeUsingQueueAndStack();
+
+        checkPalindromeUsingDeque();
 
         System.out.println("System initialized successfully.");
     }
@@ -136,6 +140,33 @@ public class PalindromeCheckerApp {
 
         while (!queue.isEmpty()) {
             if (queue.remove() != stack.pop()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        return isPalindrome;
+    }
+
+    private static void checkPalindromeUsingDeque() {
+        String input = "refer";
+        boolean result = isPalindromeUsingDeque(input);
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    private static boolean isPalindromeUsingDeque(String input) {
+
+        Deque<Character> deque = new ArrayDeque<>();
+
+        for (char c : input.toCharArray()) {
+            deque.add(c);
+        }
+
+        boolean isPalindrome = true;
+
+        while (deque.size() > 1) {
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
