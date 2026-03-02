@@ -24,6 +24,8 @@ public class PalindromeCheckerApp {
 
         checkPalindromeUsingDeque();
 
+        checkPalindromeUsingLinkedList();
+
         System.out.println("System initialized successfully.");
     }
 
@@ -156,7 +158,6 @@ public class PalindromeCheckerApp {
     }
 
     private static boolean isPalindromeUsingDeque(String input) {
-
         Deque<Character> deque = new ArrayDeque<>();
 
         for (char c : input.toCharArray()) {
@@ -167,6 +168,34 @@ public class PalindromeCheckerApp {
 
         while (deque.size() > 1) {
             if (deque.removeFirst() != deque.removeLast()) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        return isPalindrome;
+    }
+
+    private static void checkPalindromeUsingLinkedList() {
+        String input = "level";
+        boolean result = isPalindromeUsingLinkedList(input);
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    private static boolean isPalindromeUsingLinkedList(String input) {
+
+        LinkedList<Character> list = new LinkedList<>();
+
+        for (char c : input.toCharArray()) {
+            list.add(c);
+        }
+
+        boolean isPalindrome = true;
+
+        while (list.size() > 1) {
+
+            if (list.removeFirst() != list.removeLast()) {
                 isPalindrome = false;
                 break;
             }
