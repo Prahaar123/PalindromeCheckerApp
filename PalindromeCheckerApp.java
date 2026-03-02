@@ -10,7 +10,6 @@ public class PalindromeCheckerApp {
     private static final String APP_VERSION = "1.0";
 
     public static void main(String[] args) {
-
         displayWelcomeMessage();
 
         checkHardcodedPalindrome();
@@ -26,8 +25,6 @@ public class PalindromeCheckerApp {
         checkPalindromeUsingDeque();
 
         checkPalindromeUsingLinkedList();
-
-        checkPalindromeUsingRecursion();
 
         System.out.println("System initialized successfully.");
     }
@@ -161,7 +158,6 @@ public class PalindromeCheckerApp {
     }
 
     private static boolean isPalindromeUsingDeque(String input) {
-
         Deque<Character> deque = new ArrayDeque<>();
 
         for (char c : input.toCharArray()) {
@@ -206,29 +202,5 @@ public class PalindromeCheckerApp {
         }
 
         return isPalindrome;
-    }
-
-    private static void checkPalindromeUsingRecursion() {
-        String input = "madam";
-        boolean result = isPalindromeUsingRecursion(input);
-        System.out.println("Input: " + input);
-        System.out.println("Is Palindrome? : " + result);
-    }
-
-    private static boolean isPalindromeUsingRecursion(String input) {
-        return isPalindromeRecursive(input, 0, input.length() - 1);
-    }
-
-    private static boolean isPalindromeRecursive(String input, int start, int end) {
-
-        if (start >= end) {
-            return true;
-        }
-
-        if (input.charAt(start) != input.charAt(end)) {
-            return false;
-        }
-
-        return isPalindromeRecursive(input, start + 1, end - 1);
     }
 }
