@@ -1,8 +1,8 @@
-import java.util.Queue;
-import java.util.LinkedList;
-import java.util.Stack;
-import java.util.Deque;
 import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
@@ -46,6 +46,9 @@ public class PalindromeCheckerApp {
 
         // UC12: Strategy Pattern for Palindrome Algorithms
         checkPalindromeUsingStrategy();
+
+        // UC13: Performance Comparison
+        comparePerformance();
 
         // Program continues to next use case or exits
         System.out.println("System initialized successfully.");
@@ -381,5 +384,43 @@ public class PalindromeCheckerApp {
             }
         }
         return true;
+    }
+
+    // UC13: Performance Comparison of different palindrome algorithms
+    private static void comparePerformance() {
+        String input = "level";
+        
+        System.out.println("Input: " + input);
+        
+        // Test Stack Strategy
+        long startStack = System.nanoTime();
+        boolean resultStack = checkUsingStackStrategy(input);
+        long endStack = System.nanoTime();
+        long timeStack = endStack - startStack;
+        System.out.println("StackStrategy - Is Palindrome?: " + resultStack + " | Execution Time: " + timeStack + " ns");
+        
+        // Test Deque Strategy
+        long startDeque = System.nanoTime();
+        boolean resultDeque = checkUsingDequeStrategy(input);
+        long endDeque = System.nanoTime();
+        long timeDeque = endDeque - startDeque;
+        System.out.println("DequeStrategy - Is Palindrome?: " + resultDeque + " | Execution Time: " + timeDeque + " ns");
+        
+        // Test Two-Pointer Strategy
+        long startTwoPointer = System.nanoTime();
+        boolean resultTwoPointer = isPalindromeUsingCharArray(input);
+        long endTwoPointer = System.nanoTime();
+        long timeTwoPointer = endTwoPointer - startTwoPointer;
+        System.out.println("TwoPointerStrategy - Is Palindrome?: " + resultTwoPointer + " | Execution Time: " + timeTwoPointer + " ns");
+        
+        // Determine fastest
+        long minTime = Math.min(timeStack, Math.min(timeDeque, timeTwoPointer));
+        if (minTime == timeStack) {
+            System.out.println("Fastest: StackStrategy");
+        } else if (minTime == timeDeque) {
+            System.out.println("Fastest: DequeStrategy");
+        } else {
+            System.out.println("Fastest: TwoPointerStrategy");
+        }
     }
 }
